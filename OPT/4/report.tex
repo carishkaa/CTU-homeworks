@@ -1,0 +1,62 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{xcolor}
+\usepackage[left=3.6cm,right=3.9cm,top=2.5cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage{graphicx}
+\begin{document}
+
+\begin{flushright}
+B0B33OPT\\
+Karina Balagazova
+\end{flushright}
+\part*{Minimaxní lineární regrese}
+
+\section{Zadání}
+Dáno je $m$ bodů $(x_{1}, y_{1}),...,(x_{m}, y_{m})$, kde $x_{i} \in \mathbb{R}^{n}$. Úkolem je nalézt takovou afinní funkci
+$$f(x) = a^{T}x + b,$$
+parametrizovanou vektorem $a \in \mathbb{R}^{n}$ a skalárem $b \in \mathbb{R}$, která 'nejlépe' aproximuje funkční závislost odpovídající daným bodům.
+Jako míru kvality aproximace zvolíme maximální absolutní odchylku
+$$r = \max_{i = 1}^{m} |f(x_{i}) - y_{i}|$$
+Cílem je nalézt parametry $a$, $b$ afinní funkce, pro které je číslo $r$ nejmenší.
+
+\section{Převedení na LP}
+
+Úlohu 
+$$\min_{x \in \mathbb{R}^{n}} \max_{i = 1}^{m} |f(x_{i}) - y_{i}| = 
+\min_{x \in \mathbb{R}^{n}} \max_{i = 1}^{m} |a_{i}x_{i} + b_{i} - y_{i}|$$
+převedeme na lineární program pomocí zavedení proměnné $z \in \mathbb{R}$ takové, aby platila nerovnost $f(x) \leq z$. Nová úloha bude vypadat takhle:
+$$
+\begin{array}{lcl} 
+\min z \\ 
+\textrm{za podm.} -z1 \leq a^{T}x + b - y \leq z1
+\end{array}
+$$
+Po upravení podmínek dostaneme
+$$
+\begin{cases}
+ a^{T}x + b - y \leq z \\ 
+ a^{T}x + b - y \geq -z
+\end{cases}
+=
+\begin{cases}
+ a^{T}x + b - z \leq y \\ 
+ -a^{T}x - b - z \leq -y
+\end{cases}
+$$
+což lze napsat jako
+$$
+	\begin{bmatrix} x & 1 & -1 \\ -x & -1 & -1 \end{bmatrix}
+	\begin{bmatrix} a\\ b\\ z \end{bmatrix}
+	\leq
+	\begin{bmatrix} y\\ -y \end{bmatrix}
+$$
+
+\section{Souvislost bodů x s okraji pásu}
+Pro obecná $n$ \emph{Chebyshev Equioscillation Theorem} říká, že pokud funkce $f$ je nejlepší možná aproximace bodů $x$, pak vždycky existuje množina z alespoň $n+2$ bodů, pro které funkce $r(x)$ nabývá absolutního maxima (se střídávým znamínkem).\\
+Pro $n=1$ takových bodů musí být nejméně tři a to je přesně to, co pozorujeme při vykreslování. Samozřejmě takových bodů může být i víc, například pří aproximaci periodických funkcí (sin, cos, ...) nebo kdybychom chtěli najít optimální řešení pro body, ležící na dvou paralelních přímkach (okraje pásu by prochazely přes všechny dané body).\\
+Taky si pro mě bylo důležité všimnout, že přídáním nebo odebráním libovolných bodů uvnitř pásu se nic nemění, protože infinity norma nepracuje se střednimí hodnotami a výsledek ovlivňujou právě ty nejvíc vychýlené body.
+
+
+\end{document}

@@ -1,0 +1,114 @@
+DROP TABLE IF EXISTS Employee CASCADE;
+DROP TABLE IF EXISTS Position;
+DROP TABLE IF EXISTS Address;
+DROP TABLE IF EXISTS Nurse CASCADE;
+DROP TABLE IF EXISTS Doctor CASCADE;
+DROP TABLE IF EXISTS Department CASCADE;
+DROP TABLE IF EXISTS Patient CASCADE;
+DROP TABLE IF EXISTS Phone;
+DROP TABLE IF EXISTS Block CASCADE;
+DROP TABLE IF EXISTS Room CASCADE;
+DROP TABLE IF EXISTS Stay;
+DROP TABLE IF EXISTS Examination;
+DROP TABLE IF EXISTS Diagnosis CASCADE;
+DROP TABLE IF EXISTS Diagnosing;
+
+CREATE TABLE Employee(
+	employee_id INTEGER PRIMARY KEY,
+	name VARCHAR(100) NOT NULL,
+	dateOfBirth DATE NOT NULL,
+	boss_id INTEGER REFERENCES Employee(employee_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	UNIQUE(name, dateOfBirth)
+);
+
+CREATE TABLE Position(
+	employee_id INTEGER REFERENCES Employee(employee_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	position VARCHAR(50),
+	PRIMARY KEY(employee_id, position)
+);
+
+CREATE TABLE Address(
+	employee_id INTEGER REFERENCES Employee(employee_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	street VARCHAR(100),
+	city VARCHAR(50),
+	zip_code CHAR(6),
+	PRIMARY KEY(employee_id, street, city, zip_code)
+);
+
+CREATE TABLE Block(
+	code INTEGER PRIMARY KEY,
+	floor INTEGER NOT NULL
+);
+
+CREATE TABLE Department(
+	code INTEGER PRIMARY KEY,
+	name VARCHAR(50) NOT NULL UNIQUE,
+	head INTEGER REFERENCES Employee(employee_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Nurse(
+	employee_id INTEGER PRIMARY KEY REFERENCES Employee(employee_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	block INTEGER REFERENCES Block(code) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Doctor(
+	employee_id INTEGER PRIMARY KEY REFERENCES Employee(employee_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	department INTEGER REFERENCES Department(code) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Patient(
+	patient_id INTEGER PRIMARY KEY,
+	patient_name VARCHAR(100) NOT NULL,
+	dateOfBirth DATE NOT NULL,
+	bloodType VARCHAR(2) NOT NULL,
+	insurance_id INTEGER NOT NULL,
+	UNIQUE (patient_name, dateOfBirth),
+	CONSTRAINT check_blood_type CHECK (bloodType IN ('AB', 'A', 'B', '0'))
+);
+
+CREATE TABLE Phone(
+	patient_id INTEGER NOT NULL REFERENCES Patient(patient_id) ON UPDATE CASCADE ON DELETE CASCADE, 
+	phone CHAR(9) NOT NULL,
+	PRIMARY KEY (patient_id, phone)
+);
+
+CREATE TABLE Room(
+	block INTEGER NOT NULL REFERENCES Block(code) ON UPDATE CASCADE ON DELETE CASCADE,
+	number INTEGER NOT NULL,
+	type VARCHAR(10) NOT NULL,
+	available BOOLEAN DEFAULT TRUE,
+	PRIMARY KEY(block, number)
+);
+
+CREATE TABLE Stay(
+	patient_id INTEGER NOT NULL REFERENCES Patient(patient_id) ON UPDATE CASCADE ON DELETE CASCADE, 
+	fromDate DATE NOT NULL,
+	toDate DATE,
+	block INTEGER NOT NULL,
+	room INTEGER NOT NULL,
+	PRIMARY KEY(patient_id, fromDate),
+	CONSTRAINT stay_room FOREIGN KEY (block, room) REFERENCES Room(block,number)
+);
+
+CREATE TABLE Examination(
+	examination_date DATE NOT NULL,
+	examination_room INTEGER NOT NULL,
+	doctor INTEGER NOT NULL REFERENCES Doctor(employee_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	patient_id INTEGER NOT NULL REFERENCES Patient(patient_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	nurse INTEGER REFERENCES Nurse(employee_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	PRIMARY KEY(examination_date, examination_room)
+);
+
+CREATE TABLE Diagnosis(
+	diagnosis_id INTEGER PRIMARY KEY,
+	diagnosis_code VARCHAR(6) NOT NULL UNIQUE,
+	diagnosis_name VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE Diagnosing(
+	patient_id INTEGER REFERENCES Patient(patient_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	diagnosis_id INTEGER REFERENCES Diagnosis(diagnosis_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	doctor_id INTEGER REFERENCES Doctor(employee_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	diagnosing_date DATE,
+	PRIMARY KEY(patient_id, diagnosis_id, doctor_id, diagnosing_date)
+);

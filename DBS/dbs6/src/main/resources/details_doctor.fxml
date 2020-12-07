@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="488.0" prefWidth="367.0" style="-fx-background-color: #303138;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControllerDoctorDetails">
+   <children>
+      <Pane layoutX="46.0" layoutY="37.0" prefHeight="438.0" prefWidth="279.0">
+         <children>
+            <Label layoutX="72.0" layoutY="13.0" prefHeight="32.0" prefWidth="136.0" text="Doctor details" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat Alternates Medium" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="208.0" layoutY="45.0" prefHeight="32.0" prefWidth="25.0" text="id:" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat Alternates Medium" size="14.0" />
+               </font>
+            </Label>
+            <Pane layoutX="7.0" layoutY="96.0" prefHeight="46.0" prefWidth="264.0">
+               <children>
+                  <Label layoutX="8.0" layoutY="7.0" prefHeight="32.0" prefWidth="85.0" text="name:" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat Alternates Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="details_name" editable="false" layoutX="115.0" layoutY="7.0" mouseTransparent="true" prefHeight="32.0" prefWidth="136.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="7.0" layoutY="137.0" prefHeight="46.0" prefWidth="264.0">
+               <children>
+                  <Label layoutX="8.0" layoutY="7.0" prefHeight="32.0" prefWidth="96.0" text="date of birth:" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat Alternates Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="details_birth" editable="false" layoutX="115.0" layoutY="7.0" mouseTransparent="true" prefHeight="32.0" prefWidth="136.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="7.0" layoutY="178.0" prefHeight="46.0" prefWidth="264.0">
+               <children>
+                  <Label layoutX="8.0" layoutY="7.0" prefHeight="32.0" prefWidth="96.0" text="position:" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat Alternates Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="details_position" editable="false" layoutX="115.0" layoutY="7.0" mouseTransparent="true" prefHeight="32.0" prefWidth="136.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="7.0" layoutY="219.0" prefHeight="46.0" prefWidth="264.0">
+               <children>
+                  <Label layoutX="8.0" layoutY="6.0" prefHeight="32.0" prefWidth="96.0" text="address:" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat Alternates Medium" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="details_address" editable="false" layoutX="114.0" layoutY="6.0" mouseTransparent="true" prefHeight="32.0" prefWidth="136.0" />
+               </children>
+            </Pane>
+            <Label fx:id="id_label" layoutX="233.0" layoutY="45.0" prefHeight="32.0" prefWidth="25.0" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat Alternates Medium" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="105.0" layoutY="282.0" prefHeight="32.0" prefWidth="69.0" text="patients" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat Alternates Medium" size="14.0" />
+               </font>
+            </Label>
+            <ListView fx:id="patientsListView" layoutX="27.0" layoutY="314.0" prefHeight="106.0" prefWidth="226.0" />
+         </children>
+      </Pane>
+   </children>
+</Pane>

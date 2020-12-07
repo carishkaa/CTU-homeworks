@@ -1,0 +1,1 @@
+The csp.py and example_*.py files were obtained from https://github.com/davecom/ClassicComputerScienceProblemsInPython/blob/master/Chapter3/ and are licensed under the Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0

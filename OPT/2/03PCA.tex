@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage[left=3.6cm,right=3.9cm,top=2.5cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\begin{document}
+
+\begin{flushright}
+B0B33OPT\\
+Karina Balagazova
+\end{flushright}
+\part*{PCA: Motion Capture}
+
+\section{Proložení bodů podprostorem}
+
+\paragraph*{1.1}
+Úlohu budeme řešit tak, že nejprve najdeme bázi hledaného podprostoru U a pak pomoci ní nalézneme body $ b_{1},...,b_{n} $.
+
+\subparagraph*{a)}
+Součet čtverců vzdálenosti bodů $ a_{1},...,a_{n} $ k podprostoru U je stejná hodnota jako součet čtverců délek projekce těch bodů na ortogonalní doplněk:
+$$\| X^{T}a_{1} \| + ... + \| X^{T}a_{n} \| = \| X^{T}A \| = tr(X^{T}AA^{T}X)$$
+Pomoci spektrálního rozkladu $VDV^{T} = AA^{T}$ dostaneme matici $V \in \mathbb{R}^{m\times m}$, jejíž $k$ posledních sloupců budou tvořit bázi našeho hledaného podprostoru.
+
+\subparagraph*{b)}
+Body $b_{1},...,b_{n}$ jsou ortogonálními projekcemi bodů $a_{1},...a_{n}$ do podprostoru U, tj. $b_{i} = UU^{T}a_{i}$, maticově $B = UU^{T}A$.
+
+\subparagraph*{c)}
+Víme, že $UU^{T}=1$. Každou stranu rovnice $B = UC$ zleva vynasobíme maticí $U^{T}$ a tak dostaneme body $c_{1},...,c_{n}$
+$$C = U^{T}B = U^{T}UU^{T}A = U^{T}A$$ 
+
+
+\paragraph*{1.2}
+V případě že hledáme afinní podprostor, nejdřív musíme posunout body $ a_{1},...,a_{n} $ tak, aby jejich těžiště leželo v počatku, a dále už postupujeme stejně jako při hledání lin.posprostoru.
+
+\section{Proložení bodů přímkou}
+
+Zavoláme pro dané body funkci \textit{[U,C,b0]=fitaff(A,1)} a dostaváme:
+$$ U = 
+\begin{bmatrix}
+-0.9617\\
+-0.2740
+\end{bmatrix}, 
+b_{0} = 
+\begin{bmatrix}
+5.1231\\
+4.9876
+\end{bmatrix}
+$$
+Body $b_{1},...,b_{n}$ najdeme jako $b_{i} = Uc_{i} + b_{0}$, tj. rovnici přímky zjistíme takto: 
+$$\begin{cases} x = u_{1}c + b_{0_{x}} \\ y = u_{2}c + b_{0_{y}}\end{cases} \Rightarrow y = \dfrac{u_{2}}{u_{1}} (x - b_{0_{x}}) + b_{0_{y}} = 0.2849x + 3.5280$$
+
+\subsection{Nalezení přímky ve tvaru $\{b_{0}+uc$ $|$ $c \in \mathbb{R}\}$}
+Najdeme přímku ve tvaru $\{b_{0}+uc$ $|$ $c \in \mathbb{R}\}$, kde norma $\|b_{0}\|$ je nejmenší možná (tj. aby $\|b_{0}\|$ byla vzdálenost přímky od počátku 0). Jinými slovy hledáme projekci počátku $(0,0)$ na přímku $y = 0.2849x + 3.5280$ a to bude bod $$ b_{0} = 
+\begin{bmatrix}
+1.0939\\
+3.8397
+\end{bmatrix}$$
+Zkusíme do funkci \textit{[U,C,b0]=fitaff(A,1)} přidat nový vektor $b_{0}$. Dostaváme stejný vektor $U$ jako jsme měli předtím, tj. $$ u = 
+\begin{bmatrix}
+-0.9617\\
+-0.2740
+\end{bmatrix}$$
+
+\subsection{Nalezení přímky ve tvaru $\{b \in \mathbb{R}^{2}$ $|$ $x^{T}b = y\}$}
+Najdeme přímku ve tvaru $\{b \in \mathbb{R}^{2}$ $|$ $x^{T}b = y\}$. Za $x$ vezmeme vektor kolmý na vektor U, tj.
+$$ x = 
+\begin{bmatrix}
+0.2740\\
+-0.9617
+\end{bmatrix},
+$$ za $b$ dosadíme $b_{0}$ a tak najdeme 
+$$y = 0.2740*5.1231-0.9617*4.9876 = -3.3928$$
+
+
+\section{Komprese a analýza sekvence z motion capture}
+
+\subsection{}
+Optimální hodnotu úloh najdeme jako $$\lambda_{1}+...+\lambda_{m-k},$$ kde $\lambda_{1}\leqslant...\leqslant\lambda_{m}$ jsou vlastní čísla matice $AA^{T}.$
+Při singularním rozkladu matice A její nenulová singulární čísla jsou druhé odmocniny nenulových vlastních čísel matice $AA^{T}$
+
+\subsection{}
+Minimální dimenze afinního podprostoru je $k=1$. Protože pokud body nemění svoje vzájemné umístění a pohybujou se jenom po přímce, tak můžeme ten pohyb reprezentovat jenom jako posunutí jednoho bodu na přímce.
+
+\end{document}

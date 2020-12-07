@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="793.0" style="-fx-background-color: #303138;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Button fx:id="refreshButton" layoutX="702.0" layoutY="532.0" mnemonicParsing="false" onMouseReleased="#refreshAction" stylesheets="@styles/Styles.css" text="Refresh">
+         <font>
+            <Font name="Montserrat Alternates Light" size="13.0" />
+         </font>
+      </Button>
+      <Pane layoutX="40.0" layoutY="27.0" prefHeight="258.0" prefWidth="315.0">
+         <children>
+            <Button fx:id="detailsPatientButton" layoutX="230.0" layoutY="15.0" mnemonicParsing="false" onMouseReleased="#viewPatientDetailsAction" stylesheets="@styles/Styles.css" text="Details">
+               <font>
+                  <Font name="Montserrat Alternates Light" size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="16.0" layoutY="15.0" prefHeight="32.0" prefWidth="82.0" text="Patiens" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat Alternates Medium" size="17.0" />
+               </font>
+            </Label>
+            <ListView fx:id="patients" layoutX="14.0" layoutY="56.0" prefHeight="181.0" prefWidth="287.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="452.0" layoutY="73.0" prefHeight="194.0" prefWidth="243.0">
+         <children>
+            <Label layoutX="18.0" layoutY="15.0" prefHeight="32.0" prefWidth="214.0" text="Action with patients" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat Alternates Medium" size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="addNewPatientButton" layoutX="19.0" layoutY="57.0" mnemonicParsing="false" onMouseReleased="#addNewPatientAction" prefHeight="52.0" prefWidth="188.0" stylesheets="@styles/Styles.css" text="Add new patient">
+               <font>
+                  <Font name="Montserrat Alternates Light" size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/add-user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="deletePatientButton" layoutX="19.0" layoutY="121.0" mnemonicParsing="false" onMouseReleased="#deletePatientAction" prefHeight="52.0" prefWidth="167.0" stylesheets="@styles/Styles.css" text="Delete patient">
+               <font>
+                  <Font name="Montserrat Alternates Light" size="13.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/remove-user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="452.0" layoutY="304.0" prefHeight="162.0" prefWidth="302.0">
+         <children>
+            <Label layoutX="17.0" layoutY="15.0" prefHeight="32.0" prefWidth="214.0" text="Action with relations" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat Alternates Medium" size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="addRelationButton" layoutX="16.0" layoutY="60.0" mnemonicParsing="false" onMouseReleased="#addRelationAction" stylesheets="@styles/Styles.css" text="Add patient to doctor's clients">
+               <font>
+                  <Font name="Montserrat Alternates Light" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="removeRelationButton" layoutX="15.0" layoutY="100.0" mnemonicParsing="false" onMouseReleased="#removeRelationAction" stylesheets="@styles/Styles.css" text="Delete patient from doctor's clients">
+               <font>
+                  <Font name="Montserrat Alternates Light" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="40.0" layoutY="280.0" prefHeight="258.0" prefWidth="315.0">
+         <children>
+            <Button fx:id="detailsDoctorButton" layoutX="230.0" layoutY="15.0" mnemonicParsing="false" onMouseReleased="#viewDoctorDetailsAction" stylesheets="@styles/Styles.css" text="Details">
+               <font>
+                  <Font name="Montserrat Alternates Light" size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="16.0" layoutY="15.0" prefHeight="32.0" prefWidth="82.0" text="Doctors" textFill="WHITE">
+               <font>
+                  <Font name="Montserrat Alternates Medium" size="17.0" />
+               </font>
+            </Label>
+            <ListView fx:id="doctors" layoutX="14.0" layoutY="56.0" prefHeight="181.0" prefWidth="287.0" />
+         </children>
+      </Pane>
+   </children>
+</Pane>
