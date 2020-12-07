@@ -1,4 +1,4 @@
 # APO - Computer Architectures course
 
 Semestral project.
-Info: (APO/semestral_project/User_Guide.pdf)
+Info: (https://github.com/carishkaa/CTU-homeworks/APO/semestral_project/User_Guide.pdf)
