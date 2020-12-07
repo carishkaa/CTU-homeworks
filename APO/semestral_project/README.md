@@ -1,4 +1,4 @@
 # APO - Computer Architectures course
 
 Semestral project.
-Info: 
+Info: (APO/semestral_project/User_Guide.pdf)
