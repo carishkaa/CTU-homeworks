@@ -42,4 +42,4 @@ find _install -type l -printf "slink /%P %l %m 0 0\n"
 gen_init_cpio filelist | gzip > ramdisk
 
 cd ..
-qemu-system-x86_64 -kernel /boot/vmlinuz-3.2.0-4-amd64 -initrd ramdisk
+qemu-system-x86_64 -kernel linux-stable/arch/x86/boot/bzImage -initrd busybox/ramdisk
